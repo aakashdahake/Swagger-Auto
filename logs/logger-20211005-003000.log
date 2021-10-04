@@ -1,0 +1,4 @@
+2021-10-05 00:30:01.237 [main] INFO  stepDefinitions.Step_Definitions_1_Tests          : ********************************************************************************************************
+2021-10-05 00:30:01.239 [main] INFO  stepDefinitions.Step_Definitions_1_Tests          : :::: Execution Started :::: Verify that user can add pet of store inventory
+2021-10-05 00:30:01.239 [main] INFO  stepDefinitions.Step_Definitions_1_Tests          : ********************************************************************************************************
+2021-10-05 00:30:02.260 [main] ERROR com.swagger.libraries.Pet                         : java.io.FileNotFoundException: jsonSchemas\Add_Update_Pet.json (The system cannot find the path specified)

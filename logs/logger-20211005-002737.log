@@ -1,0 +1,5 @@
+2021-10-05 00:27:37.811 [main] INFO  stepDefinitions.Step_Definitions_1_Tests          : ********************************************************************************************************
+2021-10-05 00:27:37.813 [main] INFO  stepDefinitions.Step_Definitions_1_Tests          : :::: Execution Started :::: Verify that user can add pet of store inventory
+2021-10-05 00:27:37.813 [main] INFO  stepDefinitions.Step_Definitions_1_Tests          : ********************************************************************************************************
+2021-10-05 00:27:38.889 [main] ERROR com.swagger.libraries.Pet                         : com.fasterxml.jackson.core.JsonParseException: Unexpected character ('/' (code 47)): maybe a (non-standard) comment? (not recognized as one since Feature 'ALLOW_COMMENTS' not enabled for parser)
+ at [Source: (StringReader); line: 1, column: 2]

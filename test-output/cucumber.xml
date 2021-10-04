@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testng-results failed="0" passed="1" skipped="0" total="1">
+    <suite duration-ms="186" name="io.cucumber.core.plugin.TestNGFormatter">
+        <test duration-ms="186" name="io.cucumber.core.plugin.TestNGFormatter">
+            <class name="Title of your feature">
+                <test-method duration-ms="2" finished-at="2021-10-03T14:47:45.587180Z" name="Title of your scenario outline" started-at="2021-10-03T14:47:45.567772200Z" status="PASS"/>
+            </class>
+        </test>
+    </suite>
+</testng-results>

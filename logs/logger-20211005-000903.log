@@ -1,0 +1,13 @@
+2021-10-05 00:09:05.000 [main] INFO  com.swagger.utils.PrintLog                        : Headers :: [Access-Control-Allow-Origin=*
+Access-Control-Allow-Methods=GET, POST, DELETE, PUT
+Access-Control-Allow-Headers=Content-Type, api_key, Authorization
+Access-Control-Expose-Headers=Content-Disposition
+Content-Type=application/json
+Content-Length=155
+Server=Jetty(9.3.25.v20180904)]
+2021-10-05 00:09:05.007 [main] INFO  com.swagger.utils.PrintLog                        : Cookies :: [{}]
+2021-10-05 00:09:05.007 [main] INFO  com.swagger.utils.PrintLog                        : Status Code :: [200]
+2021-10-05 00:09:05.008 [main] INFO  com.swagger.utils.PrintLog                        : Status Line :: [HTTP/1.1 200 OK]
+2021-10-05 00:09:05.008 [main] INFO  com.swagger.utils.PrintLog                        : Session ID :: [null]
+2021-10-05 00:09:05.010 [main] INFO  com.swagger.utils.PrintLog                        : Response Time :: [389] milliseconds
+2021-10-05 00:09:05.016 [main] INFO  com.swagger.utils.PrintLog                        : Response :: [{"id":456,"category":{"id":123,"name":"Dogs"},"name":"Evi","photoUrls":["www.dogs.com/ev.jpg"],"tags":[{"id":789,"name":"Labradore"}],"status":"available"}]

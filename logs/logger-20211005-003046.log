@@ -1,0 +1,5 @@
+2021-10-05 00:30:46.688 [main] INFO  stepDefinitions.Step_Definitions_1_Tests          : ********************************************************************************************************
+2021-10-05 00:30:46.689 [main] INFO  stepDefinitions.Step_Definitions_1_Tests          : :::: Execution Started :::: Verify that user can add pet of store inventory
+2021-10-05 00:30:46.689 [main] INFO  stepDefinitions.Step_Definitions_1_Tests          : ********************************************************************************************************
+2021-10-05 00:30:47.779 [main] ERROR com.swagger.libraries.Pet                         : com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'jsonSchemas': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
+ at [Source: (StringReader); line: 1, column: 12]

@@ -1,0 +1,76 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "start_timestamp": "2021-10-03T14:47:45.567Z",
+        "line": 10,
+        "name": "Title of your scenario outline",
+        "description": "",
+        "id": "title-of-your-feature;title-of-your-scenario-outline;;2",
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 2184600,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "I want to write a step with \"name1\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"name1\"",
+                  "offset": 28
+                }
+              ],
+              "location": "stepDefinitions.Step_Definitions_1_Tests.i_want_to_write_a_step_with(java.lang.String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "I check for the 5 in step",
+            "match": {
+              "arguments": [
+                {
+                  "val": "5",
+                  "offset": 16
+                }
+              ],
+              "location": "stepDefinitions.Step_Definitions_1_Tests.i_check_for_the_in_step(java.lang.Integer)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "I verify the \"success\" in step",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"success\"",
+                  "offset": 13
+                }
+              ],
+              "location": "stepDefinitions.Step_Definitions_1_Tests.i_verify_the_in_step(java.lang.String)"
+            },
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "Title of your feature",
+    "description": "",
+    "id": "title-of-your-feature",
+    "keyword": "Feature",
+    "uri": "file:src/test/java/features/API-Tests.feature",
+    "tags": []
+  }
+]
