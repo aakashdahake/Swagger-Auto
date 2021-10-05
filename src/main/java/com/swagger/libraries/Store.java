@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import com.swagger.POJOs.GetInventory;
 import com.swagger.POJOs.PlaceOrderInStore;
 import com.swagger.constants.Endpoints;
+import com.swagger.utils.ConfigManager;
 import com.swagger.utils.PrintLog;
 
 import io.restassured.RestAssured;
@@ -16,11 +17,11 @@ import io.restassured.response.Response;
 
 public class Store {
 	
+	private final String baseUrl = ConfigManager.getInstance().getString("base_url");
 	private Logger logger = LogManager.getLogger();
 	private JsonParser parser = JsonParser.DEFAULT;
 	private PrintLog printResponse = new PrintLog();
-	
-	private final String baseUrl = "http://localhost:8080/api/v3/";
+
 	
 	public Store() {
 		RestAssured.baseURI = baseUrl;
@@ -47,7 +48,7 @@ public class Store {
 					.and()
 					.extract().response();
 
-			printResponse.printResponse(resp);
+			printResponse.printResponse(resp, Endpoints.GET_STORE_INVENTORY.getConstant(), null);
 
 			responseData = parser.parse(resp.asString(), GetInventory.class);
 
@@ -81,7 +82,7 @@ public class Store {
 					.and()
 					.extract().response();
 
-			printResponse.printResponse(resp);
+			printResponse.printResponse(resp, Endpoints.ADD_ORDER.getConstant(), null);
 
 			responseData = parser.parse(resp.asString(), PlaceOrderInStore.class);
 
@@ -116,7 +117,7 @@ public class Store {
 					.and()
 					.extract().response();
 
-			printResponse.printResponse(resp);
+			printResponse.printResponse(resp, Endpoints.GET_ORDER_BY_ID.getConstant(), null);
 
 			responseData = parser.parse(resp.asString(), GetInventory.class);
 
@@ -138,7 +139,7 @@ public class Store {
 
 		try {
 
-				RestAssured.given()
+			Response resp = RestAssured.given()
 					.contentType(ContentType.JSON)
 					.accept(ContentType.JSON)
 					.pathParam("orderId", orderId)
@@ -148,8 +149,8 @@ public class Store {
 					.assertThat().statusCode(HttpStatus.SC_OK)
 					.and()
 					.extract().response();
-
-			logger.info("Deleted Order Successfully with Order ID :: [{}]", orderId);
+			
+			printResponse.printResponse(resp, Endpoints.GET_ORDER_BY_ID.getConstant(), "Deleted Order Successfully with Order ID :: ["+orderId+"]");
 
 		} catch (AssertionError e) {
 			logger.error(e.getMessage());

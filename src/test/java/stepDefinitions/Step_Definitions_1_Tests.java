@@ -1,5 +1,7 @@
 package stepDefinitions;
 
+import static org.testng.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,19 +24,22 @@ public class Step_Definitions_1_Tests {
 	private Logger logger = LogManager.getLogger();
 	private Pet petLib = new Pet();
 	private Scenario scenario;
+	private PetData requestPetData = new PetData();
+	private PetData responsePetDetails = new PetData();
+	
 	
 	@Before
-    public void before(Scenario scenario) {
-        this.scenario = scenario;
-        logger.info("********************************************************************************************************");
-        logger.info(":::: Execution Started :::: {}",scenario.getName());
-        logger.info("********************************************************************************************************");
-    }
-	
+	public void before(Scenario scenario) {
+		this.scenario = scenario;
+		logger.info("********************************************************************************************************");
+		logger.info(":::: Execution Started :::: {}", scenario.getName());
+		logger.info("********************************************************************************************************");
+	}
+
 	@Given("user gathers details about pet")
 	public void user_gathers_details_about_pet() throws ParseException {
+
 		
-		PetData petDetails = new PetData();
 		Category category = new Category();
 		List<String> photoURLS = new ArrayList<String>();
 		Tag tags = new Tag();
@@ -53,24 +58,36 @@ public class Step_Definitions_1_Tests {
 		category.setName("Dogs");
 
 		// Pet details Set
-		petDetails.setName("Evi");
-		petDetails.setId(456);
-		petDetails.setStatus("available");
-		petDetails.setCategory(category);
-		petDetails.setPhotoUrls(photoURLS);
-		petDetails.setTags(tagList);
+		requestPetData.setName("Evi");
+		requestPetData.setId(456);
+		requestPetData.setStatus("available");
+		requestPetData.setCategory(category);
+		requestPetData.setPhotoUrls(photoURLS);
+		requestPetData.setTags(tagList);
 
-		PetData resData =  petLib.addPetToInv(petDetails);
-		//System.out.printf(resData.toString());
 	}
 
 	@Then("user adds pet to inventory")
 	public void user_adds_pet_to_inventory() {
-
+		
+		//Add pet to inventory
+		responsePetDetails = petLib.addPetToInv(requestPetData);
 	}
 
 	@Then("user validates addition of pet to inventory")
 	public void user_validates_addition_of_pet_to_inventory() {
-
+		
+		
+		try {
+			
+			PetData responseData = petLib.findPetByID(456);
+			System.out.printf("Response={}",responseData.getId());
+			if(responsePetDetails.getId() == requestPetData.getId()) {
+				assertEquals(requestPetData.getName(), responseData.getName());
+			}
+			
+		} catch (AssertionError e) {
+			logger.error(e.getMessage());
+		}
 	}
 }

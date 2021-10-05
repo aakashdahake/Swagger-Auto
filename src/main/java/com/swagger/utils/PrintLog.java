@@ -8,25 +8,29 @@ import org.apache.logging.log4j.Logger;
 import io.restassured.response.Response;
 
 public class PrintLog {
-	private static Logger logInstance = LogManager.getLogger();
+	
+	private String baseUrl = ConfigManager.getInstance().getString("base_url");
+	private static Logger logger = LogManager.getLogger();
 
 	/**
 	 * Prints the API response.
 	 *
 	 * @param resp - Response
 	 */
-	public void printResponse(Response resp) {
+	public void printResponse(Response resp, String uri, String message) {
 
 		if (resp.getBody() != null) {
-			logInstance.info("Headers :: [{}]", resp.getHeaders());
-			logInstance.info("Cookies :: [{}]", resp.getCookies());
-			logInstance.info("Status Code :: [{}]", resp.getStatusCode());
-			logInstance.info("Status Line :: [{}]", resp.getStatusLine());
-			logInstance.info("Session ID :: [{}]", resp.getSessionId());
-			logInstance.info("Response Time :: [{}] milliseconds", resp.getTimeIn(TimeUnit.MILLISECONDS));
-			logInstance.info("Response :: [{}]", resp.asString());
+			logger.info("Endpoint :: [{}]", baseUrl + uri);
+			logger.info("Headers :: [{}]", resp.getHeaders());
+			logger.info("Cookies :: [{}]", resp.getCookies());
+			logger.info("Status Code :: [{}]", resp.getStatusCode());
+			logger.info("Status Line :: [{}]", resp.getStatusLine());
+			logger.info("Session ID :: [{}]", resp.getSessionId());
+			logger.info("Response Time :: [{}] milliseconds", resp.getTimeIn(TimeUnit.MILLISECONDS));
+			logger.info("Response :: [{}]", resp.asString());
+			logger.info(message);
 		} else {
-			logInstance.error("No response body found");
+			logger.error("No response body found");
 		}
 	}
 }

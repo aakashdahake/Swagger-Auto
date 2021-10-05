@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.swagger.POJOs.UserData;
 import com.swagger.constants.Endpoints;
+import com.swagger.utils.ConfigManager;
 import com.swagger.utils.PrintLog;
 
 import io.restassured.RestAssured;
@@ -15,11 +16,11 @@ import io.restassured.response.Response;
 
 public class User {
 
+	private final String baseUrl = ConfigManager.getInstance().getString("base_url");
 	private Logger logger = LogManager.getLogger();
 	private JsonParser parser = JsonParser.DEFAULT;
 	private PrintLog printResponse = new PrintLog();
-	
-	private final String baseUrl = "http://localhost:8080/api/v3/";
+
 	
 	public User() {
 		RestAssured.baseURI = baseUrl;
@@ -47,7 +48,7 @@ public class User {
 					.and()
 					.extract().response();
 
-			printResponse.printResponse(resp);
+			printResponse.printResponse(resp, Endpoints.CREATE_USER.getConstant(), null );
 
 			responseData = parser.parse(resp.asString(), UserData.class);
 
@@ -82,7 +83,7 @@ public class User {
 					.and()
 					.extract().response();
 
-			printResponse.printResponse(resp);
+			printResponse.printResponse(resp, Endpoints.CREATE_USER_LIST.getConstant(), null);
 
 			responseData = parser.parse(resp.asString(), UserData[].class);
 
@@ -119,7 +120,7 @@ public class User {
 					.and()
 					.extract().response();
 
-			printResponse.printResponse(resp);
+			printResponse.printResponse(resp, Endpoints.GET_LOGIN.getConstant(), null);
 			
 			responseData = resp.asString();
 			
@@ -151,7 +152,7 @@ public class User {
 					.and()
 					.extract().response();
 
-			printResponse.printResponse(resp);
+			printResponse.printResponse(resp, Endpoints.GET_LOGOUT.getConstant(), null);
 			
 			responseData = resp.asString();
 			
@@ -186,7 +187,7 @@ public class User {
 					.and()
 					.extract().response();
 
-			printResponse.printResponse(resp);
+			printResponse.printResponse(resp, Endpoints.OPERATE_USER.getConstant(), null);
 			
 			responseData = parser.parse(resp.asString(), UserData.class);
 			
@@ -219,7 +220,7 @@ public class User {
 					.and()
 					.extract().response();
 
-			printResponse.printResponse(resp);
+			printResponse.printResponse(resp, Endpoints.OPERATE_USER.getConstant(), null);
 
 			responseData = parser.parse(resp.asString(), UserData.class);
 
@@ -240,7 +241,7 @@ public class User {
 
 		try {
 
-				RestAssured.given()
+			Response resp = RestAssured.given()
 					.contentType(ContentType.JSON)
 					.accept(ContentType.JSON)
 					.pathParam("username", username)
@@ -250,8 +251,8 @@ public class User {
 					.assertThat().statusCode(HttpStatus.SC_OK)
 					.and()
 					.extract().response();
-
-			logger.info("Deleted User Successfully with Username :: [{}]", username);
+			
+			printResponse.printResponse(resp, Endpoints.OPERATE_USER.getConstant(), "Deleted User Successfully with Username :: ["+username+"]");
 
 		} catch (AssertionError e) {
 			logger.error(e.getMessage());

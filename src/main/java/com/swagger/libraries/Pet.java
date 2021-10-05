@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.swagger.POJOs.PetData;
 import com.swagger.constants.Endpoints;
+import com.swagger.utils.ConfigManager;
 import com.swagger.utils.PrintLog;
 
 import io.restassured.RestAssured;
@@ -17,12 +18,13 @@ import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 
 public class Pet {
-
+	
+	private final String baseUrl = ConfigManager.getInstance().getString("base_url");
 	private Logger logger = LogManager.getLogger();
 	private JsonParser parser = JsonParser.DEFAULT;
 	private PrintLog printResponse = new PrintLog();
 	
-	private final String baseUrl = "http://localhost:8080/api/v3/";
+
 	
 	public Pet() {
 		RestAssured.baseURI = baseUrl;
@@ -51,7 +53,7 @@ public class Pet {
 					.and()
 					.extract().response();
 
-			printResponse.printResponse(resp);
+			printResponse.printResponse(resp, Endpoints.ADD_UPDATE_PET.getConstant(), null);
 
 			responseData = parser.parse(resp.asString(), PetData.class);
 
@@ -88,7 +90,7 @@ public class Pet {
 					.and()
 					.extract().response();
 
-			printResponse.printResponse(resp);
+			printResponse.printResponse(resp, Endpoints.ADD_UPDATE_PET.getConstant(), null);
 
 			responseData = parser.parse(resp.asString(), PetData.class);
 
@@ -124,7 +126,7 @@ public class Pet {
 					.and()
 					.extract().response();
 
-			printResponse.printResponse(resp);
+			printResponse.printResponse(resp, Endpoints.GET_FINDPETBYSTATUS.getConstant(), null);
 
 			responseData = parser.parse(resp.asString(), PetData.class);
 
@@ -161,7 +163,7 @@ public class Pet {
 					.and()
 					.extract().response();
 
-			printResponse.printResponse(resp);
+			printResponse.printResponse(resp, Endpoints.GET_FINDPETBYTAG.getConstant(), null);
 
 			responseData = parser.parse(resp.asString(), PetData.class);
 
@@ -197,7 +199,7 @@ public class Pet {
 					.and()
 					.extract().response();
 
-			printResponse.printResponse(resp);
+			printResponse.printResponse(resp, Endpoints.OPERATE_PET_BY_ID.getConstant(), null);
 
 			responseData = parser.parse(resp.asString(), PetData.class);
 
@@ -237,7 +239,7 @@ public class Pet {
 					.and()
 					.extract().response();
 
-			printResponse.printResponse(resp);
+			printResponse.printResponse(resp, Endpoints.OPERATE_PET_BY_ID.getConstant(), null);
 
 			responseData = parser.parse(resp.asString(), PetData.class);
 
@@ -258,7 +260,7 @@ public class Pet {
 
 		try {
 
-				RestAssured.given()
+			Response resp = RestAssured.given()
 					.contentType(ContentType.JSON)
 					.accept(ContentType.JSON)
 					.pathParam("petId", id)
@@ -269,7 +271,7 @@ public class Pet {
 					.and()
 					.extract().response();
 
-			logger.info("Deleted Pet Successfully with ID :: [{}]", id);
+			printResponse.printResponse(resp, Endpoints.OPERATE_PET_BY_ID.getConstant(), "Deleted Pet Successfully with ID :: ["+id+"]");
 
 		} catch (AssertionError e) {
 			logger.error(e.getMessage());
@@ -302,7 +304,7 @@ public class Pet {
 					.and()
 					.extract().response();
 
-			printResponse.printResponse(resp);
+			printResponse.printResponse(resp, Endpoints.UPLOAD_IMAGE.getConstant(), null);
 
 			responseData = parser.parse(resp.asString(), PetData.class);
 
