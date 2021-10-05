@@ -10,7 +10,7 @@ import io.restassured.response.Response;
 public class PrintLog {
 	
 	private String baseUrl = ConfigManager.getInstance().getString("base_url");
-	private static Logger logger = LogManager.getLogger();
+	private Logger logger = LogManager.getLogger();
 
 	/**
 	 * Prints the API response.
@@ -28,7 +28,9 @@ public class PrintLog {
 			logger.info("Session ID :: [{}]", resp.getSessionId());
 			logger.info("Response Time :: [{}] milliseconds", resp.getTimeIn(TimeUnit.MILLISECONDS));
 			logger.info("Response :: [{}]", resp.asString());
-			logger.info(message);
+			logger.info("Message :: [{}]", message);
+			logger.info("\n");
+			
 		} else {
 			logger.error("No response body found");
 		}

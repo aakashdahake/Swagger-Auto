@@ -77,11 +77,9 @@ public class Step_Definitions_1_Tests {
 	@Then("user validates addition of pet to inventory")
 	public void user_validates_addition_of_pet_to_inventory() {
 		
-		
 		try {
 			
 			PetData responseData = petLib.findPetByID(456);
-			System.out.printf("Response={}",responseData.getId());
 			if(responsePetDetails.getId() == requestPetData.getId()) {
 				assertEquals(requestPetData.getName(), responseData.getName());
 			}
